@@ -1,5 +1,11 @@
+/* to give the full height of the screen */
+#root, html, body {
+  height: 100vh;
+}
+
 body {
   margin: 0;
+  background-color: whitesmoke;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +13,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* given an element when we count hieght n width it also consider the margins and paddings */
+*{
+  box-sizing: border-box;
 }
+
+html{
+  scroll-behavior: smooth;
+}
+
