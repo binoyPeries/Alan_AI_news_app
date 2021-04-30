@@ -1,12 +1,12 @@
 import alanBtn from '@alan-ai/alan-sdk-web';
 import { useEffect, useState } from 'react';
 import NewsCards from './components/newsCards/newsCards';
-
+import useStyles from './styles.js';
 const alanKey='06a16214f943a579508c01beceda83ad2e956eca572e1d8b807a3e2338fdd0dc/stage'
 
 
 const App = () => {
-
+  const classes = useStyles();
   const [newsArticles, setNewsArticles]= useState([]);
 
   useEffect(()=>{
@@ -22,7 +22,7 @@ const App = () => {
   },[])
 
   return (  
-    <div >
+    <div  >
       <h1>ALAN AI NEWS APP</h1>
       <NewsCards articles={newsArticles}/>
     </div>
