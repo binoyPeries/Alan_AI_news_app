@@ -30,7 +30,7 @@ const NewsCards = ({articles,activeArticle}) => {
                                 : null
                                 }
 
-                                <Typography variant="h7" > Try Saying: {info.text}</Typography>
+                                <Typography variant="h6" > Try Saying: {info.text}</Typography>
                             </div>
                         </Grid>
                     ))}
@@ -47,7 +47,7 @@ const NewsCards = ({articles,activeArticle}) => {
                 <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                 {articles.map((article,i)=>(
                     <Grid item xs={12} sm={6} md={4} lg={3} style={{display:"flex"}}>
-                        <NewsCard article={article} index={i} activeArticle={activeArticle}/>
+                        <NewsCard article={article} index={i} activeArticle={activeArticle} />
                     </Grid>
 
                 ))}
