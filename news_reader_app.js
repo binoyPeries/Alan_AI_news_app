@@ -1,9 +1,6 @@
 // Use this sample to create your own voice commands
 intent('What does this app do?','What can i do here?',
       reply('This is a news project.'));
-// intent('Start a command', (p)=>{
-//     p.play({command: 'testcommand'});
-// });
 
 const API_KEY = 'f57bcc6c8b5241b3b225e1c56972a0db';
 let savedArticles =[];
@@ -28,6 +25,9 @@ intent(`Give me $(source* ${letters_reg}) highlights`, (p) => {
         
         p.play({ command: 'newHeadlines', articles });
         p.play(`Here are the (latest|recent) ${p.source.value}.`);
+        
+        p.play('Would you like me to read the headlines');
+        p.then(confirmation);
     });
 })
 
@@ -54,6 +54,9 @@ intent(`what\'s up with $(term* ${letters_reg}) `, (p) => {
         
         p.play({ command: 'newHeadlines', articles });
         p.play(`Here are the (latest|recent) articles on ${p.term.value}.`);
+        
+        p.play('Would you like me to read the headlines');
+        p.then(confirmation);
     });
 })
 
@@ -90,6 +93,36 @@ intent(`(show|what is|tell me|what's|what are|what're|read) (the|) (recent|lates
             p.play(`Here are the (latest|recent) news`);   
         }
         
+        p.play('Would you like me to read the headlines');
+        p.then(confirmation);
+        
         
     });
 });
+
+const confirmation = context(()=>{
+    intent('yes', async (p) =>{
+        for(let i=0;i<savedArticles.length;i++){
+            p.play({command:'highlight', article : savedArticles[i]});
+            p.play(`${savedArticles[i].title}`);
+        }
+    })
+    intent('no', (p)=>{
+        p.play('sure, let me know when u need me')
+    })
+})
+
+
+//opening the articel
+
+
+intent(`open (the|) (article |) (number| ) $(number* ${letters_reg})`, (p)=>{
+    if(p.number.value){
+        p.play({command:'open', number:p.number.value, articles: savedArticles})
+    }
+})
+
+intent('(go | ) back',(p)=>{
+    p.play('Sure going back');
+    p.play({command:'newHeadlines', articles:[]});
+})
